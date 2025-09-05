@@ -4,7 +4,7 @@ FROM python:2.7-slim-buster
 # Set one or more individual labels
 LABEL maintainer="Atharva Garole"
 LABEL email="atharva.garole@dypic.in"
-LABEL senaite.core.version="test"
+LABEL senaite.core.version="latest"
 
 # Set environment variables
 ENV PLONE_MAJOR=5.2 \
@@ -31,7 +31,9 @@ COPY requirements.txt buildout.cfg $SENAITE_INSTANCE_HOME/
 COPY build_deps.txt run_deps.txt docker-initialize.py docker-entrypoint.sh /
 
 # Note: we concatenate all commands to avoid multiple layer generation and reduce the image size
-RUN apt-get update \
+RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
+    apt-get update \
     # Install system packages
     && apt-get install -y --no-install-recommends $(grep -vE "^\s*#" /build_deps.txt | tr "\n" " ") \
     && apt-get install -y --no-install-recommends $(grep -vE "^\s*#" /run_deps.txt | tr "\n" " ") \
