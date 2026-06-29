@@ -1,4 +1,4 @@
-# SENAITE Docker
+# TCSKA Docker
 
 [SENAITE](https://www.senaite.com) is a free and open source LIMS built on top of
 [Plone](https://plone.org) and the [Zope application server](https://www.zope.org).
