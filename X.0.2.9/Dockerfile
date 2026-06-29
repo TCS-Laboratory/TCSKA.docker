@@ -2,8 +2,8 @@
 FROM python:2.7-slim-buster
 
 # Set one or more individual labels
-LABEL maintainer="Ramon Bartl"
-LABEL email="rb@ridingbytes.com"
+LABEL maintainer="atharva garole"
+LABEL email="atharva.garole@dypic.in"
 LABEL senaite.core.version="latest"
 
 # Set environment variables
